@@ -2,12 +2,6 @@
 
 Standalone Redis listener template for `trades.raw`.
 
-## Runtime
-
-- `REDIS_URL` — Redis pub/sub endpoint, defaults to `redis://localhost:6379/0`
-- `CHANNEL` — Redis channel, defaults to `trades.raw`
-- `MIN_USDC` — minimum trade size to print, defaults to `0.0`
-
 ## Docker
 
 ```bash
@@ -18,4 +12,20 @@ docker run --rm \
   pm-template-listener
 ```
 
-The listener prints formatted trades to stdout and is meant to be copied or adapted.
+## Local run
+
+No venv is needed if you use Docker. If you want to run it directly, create one and install `redis`:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install redis
+python main.py
+```
+
+Environment variables:
+
+- `REDIS_URL` — defaults to `redis://localhost:6379/0`
+- `CHANNEL` — defaults to `trades.raw`
+- `MIN_USDC` — defaults to `0.0`
+
